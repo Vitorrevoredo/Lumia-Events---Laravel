@@ -11,11 +11,13 @@ body {
     color: #f8f9fa;
 }
 
+/* Cabeçalho */
 header {
     background-color: #161a2d;
     border-bottom: 2px solid #29304a;
 }
 
+/* Layout */
 .row {
     margin: 0;
 }
@@ -24,11 +26,13 @@ header {
     padding: 0;
 }
 
+/* Botões */
 .btn-primary {
     background-color: #ff8c42;
     border: 2px solid #d67530;
     color: white;
-    transition: 0.3s;
+    transition: 0.3s ease-in-out;
+    border-radius: 6px;
 }
 
 .btn-primary:hover {
@@ -36,7 +40,7 @@ header {
     border-color: #b55b25;
 }
 
-/* navbar */
+/* Navbar */
 #navbar img {
     width: 40px;
 }
@@ -51,16 +55,16 @@ header {
     font-size: 14px;
     color: #5ac8fa;
     font-weight: bold;
-    transition: 0.3s;
+    transition: 0.3s ease-in-out;
 }
 
 #navbar a:hover {
     color: #ff8c42;
 }
 
-/* search container */
+/* Banner */
 #search-container {
-    background-image: url("../img/banner.jpg");
+    background-image: url("../img/banner.webp");
     background-size: cover;
     background-position: center;
     height: 400px;
@@ -74,7 +78,7 @@ header {
     font-weight: 900;
 }
 
-/* Events List */
+/* Lista de eventos */
 #events-container {
     padding: 50px;
 }
@@ -91,6 +95,8 @@ header {
 
 #cards-container {
     display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
 }
 
 #events-container .card {
@@ -101,11 +107,12 @@ header {
     margin: .5%;
     background-color: #1b2338;
     box-shadow: 3px 3px 12px rgba(0, 0, 0, 0.4);
-    transition: transform 0.3s ease-in-out;
+    transition: transform 0.3s ease-in-out, box-shadow 0.3s;
 }
 
 #events-container .card:hover {
     transform: scale(1.05);
+    box-shadow: 4px 4px 15px rgba(0, 0, 0, 0.5);
 }
 
 #events-container img {
@@ -131,7 +138,7 @@ header {
     color: #bdc3c7;
 }
 
-/* Event create page */
+/* Formulário de criação de evento */
 #event-create-container {
     padding: 30px;
 }
@@ -144,14 +151,23 @@ header {
 #event-create-container input, 
 #event-create-container select, 
 #event-create-container textarea {
-   font-size: 12px;
+   font-size: 14px;
    background-color: #1b2338;
    color: #f8f9fa;
    border: 1px solid #5ac8fa;
    padding: 8px;
    border-radius: 6px;
+   transition: 0.3s ease-in-out;
 }
 
+#event-create-container input:focus, 
+#event-create-container select:focus, 
+#event-create-container textarea:focus {
+   border-color: #ff8c42;
+   outline: none;
+}
+
+/* Mensagem de alerta */
 .msg {
     background-color: #ff8c42; 
     color: #0d0f1a; 
@@ -164,9 +180,55 @@ header {
     border-radius: 6px;
 }
 
+/* Detalhes do evento */
+#event-details {
+    display: flex;
+    align-items: center;
+    gap: 30px;
+    margin: 30px;
+    flex-wrap: wrap;
+}
 
+#image-container img {
+    border-radius: 10px;
+    flex-shrink: 0;
+}
 
-/* footer */
+#info-container {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+#info-container h1 {
+    font-size: 36px;
+    font-weight: 900;
+}
+
+#info-container p {
+    font-size: 16px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+#info-container h3 {
+    font-size: 20px;
+    font-weight: bold;
+    color: #ff8c42;
+}
+
+#info-container ion-icon {
+    font-size: 20px;
+    color: #5ac8fa;
+}
+
+#info-container #event-submit-button {
+    margin: 20px 0;
+}
+
+/* Rodapé */
 footer {
     text-align: center;
     background-color: #161a2d;
