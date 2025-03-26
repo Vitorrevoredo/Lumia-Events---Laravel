@@ -41,14 +41,16 @@ header {
 }
 
 /* Navbar */
-#navbar img {
-    width: 40px;
+.navbar-brand img {
+    width: 120px;
+    height: auto;
+    max-width: 100%;
 }
 
 #navbar {
     justify-content: space-between;
     background-color: #161a2d;
-    padding: 5px 0;
+    padding: 10px 20px;
 }
 
 #navbar a {
@@ -96,7 +98,6 @@ header {
 #cards-container {
     display: flex;
     flex-wrap: wrap;
-    justify-content: space-between;
 }
 
 #events-container .card {
@@ -106,8 +107,6 @@ header {
     padding: 0;
     margin: .5%;
     background-color: #1b2338;
-    box-shadow: 3px 3px 12px rgba(0, 0, 0, 0.4);
-    transition: transform 0.3s ease-in-out, box-shadow 0.3s;
 }
 
 #events-container .card:hover {
@@ -116,9 +115,7 @@ header {
 }
 
 #events-container img {
-    max-height: 160px;
-    border-top-left-radius: 12px;
-    border-top-right-radius: 12px;
+    max-height: 90px;
 }
 
 .card .card-date {
@@ -183,15 +180,20 @@ header {
 /* Detalhes do evento */
 #event-details {
     display: flex;
-    align-items: center;
+    align-items: flex-start;
     gap: 30px;
     margin: 30px;
-    flex-wrap: wrap;
+    flex-wrap: nowrap;
+}
+
+#image-container {
+    flex-shrink: 0;
 }
 
 #image-container img {
     border-radius: 10px;
-    flex-shrink: 0;
+    max-width: 300px;
+    width: 100%;
 }
 
 #info-container {
@@ -228,7 +230,7 @@ header {
     margin: 20px 0;
 }
 
-#items-list{
+#items-list {
     list-style: none;
     padding-left: 0;
 }
@@ -236,6 +238,15 @@ header {
 #items-list li {
     display: flex;
 }
+
+/* Ajuste da Logo */
+#logo {
+    max-width: 50px; 
+    height: auto;  
+    display: block;  
+    margin-left: 15px; 
+}
+
 
 /* Rodapé */
 footer {

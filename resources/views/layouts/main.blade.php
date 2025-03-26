@@ -14,6 +14,9 @@
     <body>
         <header>
             <nav class="navbar navbar-expand-lg navbar-light">
+                <a href="/" class="navbar-brand">
+                    <img src="/img/lumiaevents_logo.svg" alt="Lumia Events Logo" id="logo">
+                </a>
                 <div class="collapse navbar-collapse" id="navbar">
                     <a href="" class="navbar-brand">
                     <a href="/" class="navbar-brand">
