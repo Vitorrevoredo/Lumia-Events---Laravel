@@ -32,7 +32,6 @@
                         <li class="nav-item">
                             <a href="/dashboard" class="nav-link">Meus Eventos</a>
                         </li>
-                        @endauth
                         <li class="nav-item">
                             <form action="/logout" method="POST">
                                 @csrf
@@ -40,6 +39,7 @@
                                 this.closest('form').submit();">Sair</a>
                             </form>
                         </li>
+                        @endauth
                         @guest
                         <li class="nav-item">
                             <a href="/login" class="nav-link">Entrar</a>

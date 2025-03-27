@@ -247,6 +247,9 @@ header {
     margin-left: 15px; 
 }
 
+#description-container {
+    margin-top: 30px;
+}
 
 /* Rodapé */
 footer {
