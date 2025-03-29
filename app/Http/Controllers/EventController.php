@@ -88,10 +88,16 @@ class EventController extends Controller
         return redirect('/')->with('msg','Evento editado com sucesso!');
     }
     
+    public function dashboard(){
+        $user = Auth::user();
+        $events = $user->events;    
+
+        return view('events.dashboard',['events' => $events]);
+    }
+
     public function destroy($id){
         Event::findOrFail($id)->delete();
 
-        return redirect('/')->with('msg','Evento deletado com sucesso!');
+        return redirect('/dashboard')->with('msg','Evento deletado com sucesso!');
     }
-
 }

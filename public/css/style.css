@@ -250,6 +250,20 @@ header {
 #description-container {
     margin-top: 30px;
 }
+/* Dashboard */
+.dashboard-title-container {
+    margin-bottom: 30px;
+    margin-top: 30px;
+
+}
+
+.dashboard-events-container{
+    width: 25%;
+}
+
+.dashboard-events-container form {
+    display: inline-block;
+}
 
 /* Rodapé */
 footer {
