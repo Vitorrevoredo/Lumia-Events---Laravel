@@ -1,6 +1,9 @@
 /* Geral */
 * {
     font-family: 'Poppins', sans-serif;
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
 }
 
 body {
@@ -98,15 +101,16 @@ header {
 #cards-container {
     display: flex;
     flex-wrap: wrap;
+    gap: 15px;
 }
 
 #events-container .card {
-    flex: 1 1 24%;
+    flex: 1 1 calc(25% - 15px);
     max-width: 25%;
     border-radius: 12px;
     padding: 0;
-    margin: .5%;
     background-color: #1b2338;
+    transition: transform 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
 }
 
 #events-container .card:hover {
@@ -116,6 +120,8 @@ header {
 
 #events-container img {
     max-height: 90px;
+    width: 100%;
+    object-fit: cover;
 }
 
 .card .card-date {
@@ -148,29 +154,28 @@ header {
 #event-create-container input, 
 #event-create-container select, 
 #event-create-container textarea {
-   font-size: 14px;
-   background-color: #1b2338;
-   color: #f8f9fa;
-   border: 1px solid #5ac8fa;
-   padding: 8px;
-   border-radius: 6px;
-   transition: 0.3s ease-in-out;
+    font-size: 14px;
+    background-color: #1b2338;
+    color: #f8f9fa;
+    border: 1px solid #5ac8fa;
+    padding: 8px;
+    border-radius: 6px;
+    transition: 0.3s ease-in-out;
 }
 
 #event-create-container input:focus, 
 #event-create-container select:focus, 
 #event-create-container textarea:focus {
-   border-color: #ff8c42;
-   outline: none;
+    border-color: #ff8c42;
+    outline: none;
 }
 
 /* Mensagem de alerta */
 .msg {
-    background-color: #ff8c42; 
-    color: #0d0f1a; 
-    border: 1px solid #d67530; 
+    background-color: #ff8c42;
+    color: #0d0f1a;
+    border: 1px solid #d67530;
     width: 100%;
-    margin-bottom: 0;
     text-align: center;
     padding: 10px;
     font-weight: bold;
@@ -183,18 +188,13 @@ header {
     align-items: flex-start;
     gap: 30px;
     margin: 30px;
-    flex-wrap: nowrap;
+    flex-wrap: wrap;
 }
 
 #image-container {
     flex-shrink: 0;
 }
 
-#image-container img {
-    border-radius: 10px;
-    max-width: 300px;
-    width: 100%;
-}
 
 #info-container {
     flex: 1;
@@ -241,28 +241,30 @@ header {
 
 /* Ajuste da Logo */
 #logo {
-    max-width: 50px; 
-    height: auto;  
-    display: block;  
-    margin-left: 15px; 
+    max-width: 50px;
+    height: auto;
+    display: block;
+    margin-left: 15px;
 }
 
-#description-container {
-    margin-top: 30px;
-}
 /* Dashboard */
 .dashboard-title-container {
-    margin-bottom: 30px;
-    margin-top: 30px;
-
+    margin: 30px 0;
 }
 
-.dashboard-events-container{
-    width: 25%;
+.dashboard-events-container {
+    width: 100%;
+    max-width: 400px;
 }
 
 .dashboard-events-container form {
     display: inline-block;
+}
+
+/* Edit Page */
+.img-preview {
+    width: 100px;
+    margin-top: 20px;
 }
 
 /* Rodapé */
@@ -279,3 +281,11 @@ footer {
 footer p {
     margin-bottom: 0;
 }
+
+/* Botões Editar e Deletar lado a lado */
+.edit-delete-container {
+    display: flex;
+    gap: 10px; /* Espaçamento entre os botões */
+    align-items: center;
+}
+

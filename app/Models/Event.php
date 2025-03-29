@@ -13,10 +13,16 @@ class Event extends Model
         'items' => 'array'
     ];
 
+    protected $guarded = [];
+
     protected $dates = ['date'];
     
     public function user()
     {
         return $this->belongsTo('App\Models\User');
+    }
+
+    public function users(){
+        return $this->belongsToMany('App\Models\User');
     }
 }
