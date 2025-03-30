@@ -13,13 +13,11 @@ class EventController extends Controller
     {
         $search = request('search');
 
-        if ($search) {
-            $events = Event::where('title', 'like', '%' . $search . '%')->get();
-        } else {
-            $events = Event::all();
-        }
+        $events = $search ? 
+            Event::where('title', 'like', '%' . $search . '%')->get() : 
+            Event::all();
 
-        return view('welcome', ['events' => $events, 'search' => $search]);
+        return view('welcome', compact('events', 'search'));
     }
 
     public function create()
@@ -35,11 +33,11 @@ class EventController extends Controller
         $event->city = $request->city;
         $event->private = $request->private;
         $event->description = $request->description;
-        $event->items = json_encode($request->items);
+        $event->items = json_encode($request->items ?? []); // Garante que não seja null
 
         // Upload de imagem
         if ($request->hasFile('image') && $request->file('image')->isValid()) {
-            $image = $request->image;
+            $image = $request->file('image');
             $imageName = md5($image->getClientOriginalName() . time()) . '.' . $image->extension();
             $image->move(public_path('img/events'), $imageName);
             $event->image = $imageName;
@@ -51,22 +49,24 @@ class EventController extends Controller
         return redirect('/')->with('msg', 'Evento criado com sucesso!');
     }
 
-    public function show($id) {
+    public function show($id)
+    {
         $event = Event::findOrFail($id);
-        $eventOwner = User::where('id', $event->user_id)->first();
-    
-        // Converte items de JSON string para array
-        $event->items = json_decode($event->items, true);
-    
-        return view('events.show', ['event' => $event, 'eventOwner' => $eventOwner]);
+        $eventOwner = User::find($event->user_id);
+
+        // Garante que items sempre será um array
+        $event->items = json_decode($event->items ?? '[]', true);
+
+        return view('events.show', compact('event', 'eventOwner'));
     }
-    
 
     public function dashboard()
     {
-        $events = Auth::user()->events;
+        $user = Auth::user();
+        $events = $user->events;
+        $eventsAsParticipant = $user->eventsAsParticipant;
 
-        return view('events.dashboard', ['events' => $events]);
+        return view('events.dashboard', compact('events', 'eventsAsParticipant'));
     }
 
     public function destroy($id)
@@ -90,7 +90,7 @@ class EventController extends Controller
             return redirect('/dashboard')->with('msg', 'Você não tem permissão para editar este evento.');
         }
 
-        return view('events.edit', ['event' => $event]);
+        return view('events.edit', compact('event'));
     }
 
     public function update(Request $request)
@@ -118,7 +118,7 @@ class EventController extends Controller
             $data['image'] = $imageName;
         }
 
-        $data['items'] = json_encode($request->items);
+        $data['items'] = json_encode($request->items ?? []);
 
         $event->update($data);
 
@@ -138,8 +138,25 @@ class EventController extends Controller
             return redirect('/dashboard')->with('msg', 'Você já está participando deste evento.');
         }
 
-        $event->users()->attach($user);
+        $event->users()->attach($user->id);
 
         return redirect('/dashboard')->with('msg', 'Você se inscreveu no evento com sucesso!');
+    }
+    public function leaveEvent($id) {
+        
+        $user = Auth::user();
+        $event = Event::findOrFail($id);
+
+        if ($user->id == $event->user_id) {
+            return redirect('/dashboard')->with('msg', 'Você não pode sair do seu próprio evento.');
+        }
+
+        if (!$event->users()->where('user_id', $user->id)->exists()) {
+            return redirect('/dashboard')->with('msg', 'Você não está participando deste evento.');
+        }
+
+        $event->users()->detach($user->id);
+
+        return redirect('/dashboard')->with('msg', 'Você saiu do evento com sucesso!');
     }
 }
