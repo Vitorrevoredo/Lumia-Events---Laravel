@@ -8,7 +8,7 @@
 
 body {
     min-height: 100vh;
-    padding-bottom: 100px;
+    padding-bottom: 80px; /* Espaço suficiente para o rodapé */
     position: relative;
     background-color: #0d0f1a;
     color: #f8f9fa;
@@ -18,15 +18,20 @@ body {
 header {
     background-color: #161a2d;
     border-bottom: 2px solid #29304a;
+    padding: 15px 0;
 }
 
 /* Layout */
-.row {
-    margin: 0;
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 20px;
 }
 
-.container-fluid {
-    padding: 0;
+.row {
+    margin: 0;
+    display: flex;
+    flex-wrap: wrap;
 }
 
 /* Botões */
@@ -36,6 +41,8 @@ header {
     color: white;
     transition: 0.3s ease-in-out;
     border-radius: 6px;
+    padding: 8px 15px;
+    font-weight: bold;
 }
 
 .btn-primary:hover {
@@ -98,18 +105,23 @@ header {
     margin-top: 30px;
 }
 
+/* Alinhando os Cards corretamente */
 #cards-container {
     display: flex;
     flex-wrap: wrap;
-    gap: 15px;
+    gap: 20px;
+    justify-content: flex-start; /* Deixa alinhado à esquerda */
 }
 
+/* Ajustando os Cards */
 #events-container .card {
-    flex: 1 1 calc(25% - 15px);
-    max-width: 25%;
+    flex: 1 1 calc(25% - 20px);
+    max-width: 22%;
     border-radius: 12px;
-    padding: 0;
     background-color: #1b2338;
+    display: flex;
+    flex-direction: column;
+    min-height: 350px;
     transition: transform 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
 }
 
@@ -118,27 +130,34 @@ header {
     box-shadow: 4px 4px 15px rgba(0, 0, 0, 0.5);
 }
 
+/* Ajustando a Imagem */
 #events-container img {
-    max-height: 90px;
+    max-height: 140px;
     width: 100%;
     object-fit: cover;
+    border-radius: 12px 12px 0 0;
 }
 
-.card .card-date {
-    font-size: 12px;
-    color: #5ac8fa;
+/* Garantindo que o conteúdo apareça */
+.card .card-body {
+    padding: 15px;
+    display: flex;
+    flex-direction: column;
+    flex-grow: 1;
+    justify-content: space-between;
 }
 
 .card .card-title {
     color: #f8f9fa;
-    font-size: 22px;
+    font-size: 18px;
     font-weight: bold;
-    margin-bottom: 20px;
+    margin-bottom: 10px;
 }
 
-.card-participants {
+.card .card-text {
     font-size: 14px;
     color: #bdc3c7;
+    flex-grow: 1;
 }
 
 /* Formulário de criação de evento */
@@ -193,8 +212,8 @@ header {
 
 #image-container {
     flex-shrink: 0;
+    width: 45%;
 }
-
 
 #info-container {
     flex: 1;
@@ -267,13 +286,13 @@ header {
     margin-top: 20px;
 }
 
-/* Rodapé */
+/* Rodapé fixo */
 footer {
     text-align: center;
     background-color: #161a2d;
     color: #ffffff;
     padding: 30px;
-    position: absolute;
+    position: fixed;
     bottom: 0;
     width: 100%;
 }
@@ -285,7 +304,6 @@ footer p {
 /* Botões Editar e Deletar lado a lado */
 .edit-delete-container {
     display: flex;
-    gap: 10px; /* Espaçamento entre os botões */
+    gap: 10px;
     align-items: center;
 }
-
