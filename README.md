@@ -2,7 +2,7 @@
 
 Lumia Events é uma plataforma moderna para a criação, gerenciamento e participação em eventos. O projeto utiliza **Laravel Jetstream** com **Livewire**, Bootstrap e um design responsivo.
 
-🎨 <h2>Layout do Projeto</h2>
+<h2>Layout do Projeto</h2>
 <ul>
     <li>Página inicial: Exibe os eventos disponíveis.</li>
     <li>Criação de eventos: Formulário para adicionar novos eventos.</li>
